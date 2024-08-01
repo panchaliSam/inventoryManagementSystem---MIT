@@ -19,7 +19,9 @@
 
     <!-- CSS imports -->
     <!-- Import styles for navbar -->
+    <link rel="stylesheet" href="./Assets/CSS/index.css"/>
     <link rel="stylesheet" href="./Assets/CSS/navbar.css"/>
+    <link rel="stylesheet" href="./Assets/CSS/signInCard.css"/>
 
     <!--JS imporsts-->
 
@@ -27,14 +29,20 @@
   <body>
 
     <!--Componet imports-->
-    <!--Call navbar component-->
+    <!--Include navbar component-->
     <?php
         include_once "./Assets/Components/navbar.php"
+    ?>
+
+    <!--Include signIn Card-->
+    <?php
+      include_once "./Assets/Components/signInCard.php"
     ?>
 
     <!--JS imporsts-->
     <!--navbar.js-->
     <script src="./Assets/JS/navbar.js"></script>
+    <script src="./Assets/JS/signInPwd.js"></script>
 
   </body>
 </html>
