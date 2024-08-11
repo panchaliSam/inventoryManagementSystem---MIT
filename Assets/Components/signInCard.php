@@ -18,7 +18,7 @@
             <form action="" method="post">
                 <div class="signInUserName">
                     <label for="username">Username:</label><br>
-                    <input type="text" id="username" name="userName" placeholder="Your UserName">
+                    <input type="text" id="username" name="username" placeholder="Your UserName">
                 </div>
                 <div class="signInPassword">
                     <label for="pwd">Password:</label><br>
