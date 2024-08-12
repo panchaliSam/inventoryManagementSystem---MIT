@@ -75,20 +75,6 @@ CREATE TABLE UserOrders (
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
 );
 
--- SECURING PASSWORDS --
--- Ensure to use a secure method to hash passwords before inserting into the database.
--- Example using MySQL functions to simulate password hashing (but use a secure server-side hash in practice):
-
-DELIMITER $$
-CREATE TRIGGER before_insert_user
-BEFORE INSERT ON User
-FOR EACH ROW
-BEGIN
-    SET NEW.PasswordHash = SHA2(NEW.PasswordHash, 256);
-END$$
-DELIMITER ;
-
--- Note: In practice, use a server-side programming language to hash passwords before storing them in the database.
 
 
 USE InventoryMgt;
