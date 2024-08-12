@@ -56,59 +56,61 @@
           include_once "../PHP/categoryView.php"
       ?>
     </div>
+    <!-- Modal for Managing Inventory -->
+    <div id="manageInventoryModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
 
-     <!-- Modal for Managing Inventory -->
-     <div id="manageInventoryModal" class="modal fade" role="dialog">
-      <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Manage Inventory</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Category ID</th>
+                                <th>Category Name</th>
+                                <th>Quantity</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            // Fetch categories from the database
+                            include_once "../PHP/categoryViewDeleteEdit.php"; // Assuming this script fetches the categories
 
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Manage Inventory</h4>
-          </div>
-          <div class="modal-body">
-            <table class="table table-bordered table-hover">
-              <thead>
-                <tr>
-                  <th>Category ID</th>
-                  <th>Category Name</th>
-                  <th>Quantity</th>
-                  <th>Description</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                  // Fetch categories from the database
-                  include_once "../PHP/categoryViewDeleteEdit.php"; // Assuming this script fetches the categories
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . $row['category_id'] . "</td>";
+                                echo "<td>" . $row['category_name'] . "</td>";
+                                echo "<td>" . $row['quantity'] . "</td>";
+                                echo "<td>" . $row['description'] . "</td>";
+                                echo "<td>
+                                        <a href='editCategory.php?id=" . $row['category_id'] . "' class='btn btn-primary btn-sm'>
+                                            <span class='glyphicon glyphicon-edit'></span>
+                                        </a>
+                                        <a href='deleteCategory.php?id=" . $row['category_id'] . "' class='btn btn-danger btn-sm'>
+                                            <span class='glyphicon glyphicon-trash'></span>
+                                        </a>
+                                      </td>";
+                                echo "</tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <a href="../PHP/categoryDownload.php" class="btn btn-success">Download CSV</a>
+                </div>
+            </div>
 
-                  while($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $row['category_id'] . "</td>";
-                    echo "<td>" . $row['category_name'] . "</td>";
-                    echo "<td>" . $row['description'] . "</td>";
-                    echo "<td>
-                            <a href='editCategory.php?id=" . $row['category_id'] . "' class='btn btn-primary btn-sm'>
-                              <span class='glyphicon glyphicon-edit'></span>
-                            </a>
-                            <a href='deleteCategory.php?id=" . $row['category_id'] . "' class='btn btn-danger btn-sm'>
-                              <span class='glyphicon glyphicon-trash'></span>
-                            </a>
-                          </td>";
-                    echo "</tr>";
-                  }
-                ?>
-              </tbody>
-            </table>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
         </div>
-
-      </div>
     </div>
+
 
   </body>
 </html>
