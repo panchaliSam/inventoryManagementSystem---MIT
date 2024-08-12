@@ -1,0 +1,55 @@
+ /* Container for the category view */
+ .category-view {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+    
+}
+
+/* Styling for each card */
+.category-card {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: justify;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Card image */
+.category-card .card-img-top {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Card body */
+.category-card .card-body {
+    padding: 15px;
+    text-align: center;
+}
+
+/* Card title */
+.category-card .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #343a40;
+}
+
+/* Card text */
+.category-card .card-text {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+/*card image*/
+.category-image{
+    width: 40rem;
+}
