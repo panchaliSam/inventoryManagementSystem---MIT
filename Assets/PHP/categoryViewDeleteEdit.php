@@ -22,7 +22,7 @@ if ($result->num_rows > 0) {
                 <a href='../PHP/categoryEdit.php?id=" . $row['CategoryID'] . "' class='btn btn-primary btn-sm'>
                   <span class='glyphicon glyphicon-edit'></span>
                 </a>
-                <a href='deleteCategory.php?id=" . $row['CategoryID'] . "' class='btn btn-danger btn-sm'>
+                <a href='../PHP/categoryDelete.php?id=" . $row['CategoryID'] . "' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this category?\")'>
                   <span class='glyphicon glyphicon-trash'></span>
                 </a>
               </td>";
