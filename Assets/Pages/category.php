@@ -37,6 +37,12 @@
     ?>
 
     <div class="afterNavContent" style="padding-top: 40px; margin-top: 50px;">
+
+      <!-- Include searchbar for category name search -->
+       <?php
+        include_once "../Components/search-bar.php"
+       ?>
+
       <!-- Include category view cards -->
       <?php
           include_once "../PHP/categoryView.php"
