@@ -22,7 +22,10 @@
     <!-- Including Bootstrap's JavaScript for interactive components like modals, dropdowns, etc. -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <!--JS imporsts-->
+    <!--CSS imporsts-->
+    <link rel="stylesheet" href="../CSS/category.css"/>
+    <link rel="stylesheet" href="../CSS/navbar.css"/>
+    <link rel="stylesheet" href="../CSS/index.css"/>
 
   </head>
   <body>
@@ -32,5 +35,13 @@
     <?php
         include_once "../Components/admin-navbar.php"
     ?>
+
+    <div class="afterNavContent" style="padding-top: 40px; margin-top: 50px;">
+      <!-- Include category view cards -->
+      <?php
+          include_once "../PHP/categoryView.php"
+      ?>
+    </div>
+
   </body>
 </html>

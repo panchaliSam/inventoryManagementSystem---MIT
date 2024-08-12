@@ -149,3 +149,6 @@ INSERT INTO UserOrders (UserID, OrderID)
 VALUES 
 (1, 1), -- Alice Johnson with Order 1
 (2, 2); -- Bob Smith with Order 2
+
+
+ALTER TABLE User MODIFY PasswordHash VARCHAR(255) NOT NULL;

@@ -15,7 +15,7 @@
             <h2>Sign In</h2>
         </div>
         <div class="signInForm">
-            <form action="" method="post">
+            <form action="./Assets/PHP/signInLogic.php" method="post">
                 <div class="signInUserName">
                     <label for="username">Username:</label><br>
                     <input type="text" id="username" name="username" placeholder="Your UserName">
