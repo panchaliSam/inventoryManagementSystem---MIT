@@ -9,10 +9,10 @@ Read all categories -->
 // Include the config file for database connection
 require('../Config/config.php');
 
-// Step 1: Capture the search term if available
+// Capture the search term if available
 $searchTerm = isset($_POST['searchTerm']) ? $_POST['searchTerm'] : '';
 
-// Step 2: Modify the SQL query to include a search condition
+// Modify the SQL query to include a search condition
 $sql = "SELECT * FROM category";
 if ($searchTerm != '') {
     $sql .= " WHERE Name LIKE ?";
