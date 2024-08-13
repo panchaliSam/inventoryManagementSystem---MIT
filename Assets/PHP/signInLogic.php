@@ -4,13 +4,10 @@ require('../Config/config.php');
 session_start();
 
 $username = $_POST['username'];
-$password = $_POST['pwd'];
+$password = mysqli_real_escape_string($conn, $_POST['pwd']);
 
 // To prevent SQL injection
 $username = mysqli_real_escape_string($conn, $username);
-
-// Hash the input password using SHA-256
-$passwordHash = hash('sha256', $password);
 
 // Initialize session variables
 $_SESSION["loggedIn"] = false;
@@ -18,9 +15,9 @@ $_SESSION["isAdmin"] = false;
 $_SESSION["show_login_alert"] = true;
 
 // Debug: Check the username and hashed password
-echo "Username: $username<br>";
-echo "Input Password (hashed): $passwordHash<br>";
-echo "Length of Input Password (hashed): " . strlen($passwordHash) . "<br>";
+// echo "Username: $username<br>";
+// echo "Input Password (hashed): $passwordHash<br>";
+// echo "Length of Input Password (hashed): " . strlen($passwordHash) . "<br>";
 
 // Query to get the user details
 $sql = "SELECT UserID, Name, Email, Telephone, Username, PasswordHash, IsAdmin
@@ -32,12 +29,12 @@ $result = mysqli_query($conn, $sql);
 if ($result && mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
     
-    // Debug: Show the stored hash
-    echo "Stored PasswordHash: " . $row['PasswordHash'] . "<br>";
-    echo "Length of Stored PasswordHash: " . strlen($row['PasswordHash']) . "<br>";
+    // // Debug: Show the stored hash
+    // echo "Stored PasswordHash: " . $row['PasswordHash'] . "<br>";
+    // echo "Length of Stored PasswordHash: " . strlen($row['PasswordHash']) . "<br>";
 
     // Compare the hashed password
-    if ($passwordHash === $row['PasswordHash']) {
+    if (password_verify($password, $row['PasswordHash'])) {
         // If the password is correct, set the session variables
         $_SESSION["loggedIn"] = true;
         $_SESSION["userID"] = $row['UserID'];
