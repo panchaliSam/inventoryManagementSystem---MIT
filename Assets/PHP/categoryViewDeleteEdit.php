@@ -1,5 +1,5 @@
-<!-- Panchali
-Manage category  -->
+<!-- Panchali-->
+<!-- Manage category   -->
 
 <?php
 // Include the config file for database connection
