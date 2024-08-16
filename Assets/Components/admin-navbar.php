@@ -3,89 +3,25 @@
 <!--Developer Hiruni-->
 
 <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 100px">
-      <div class="container-fluid" style="height: 100%">
+    <div class="container-fluid" style="height: 100%">
         <div class="navbar-header">
-          <a
-            class="navbar-brand"
-            href="#"
-            style="
-              line-height: 60px;
-              padding-top: 20px;
-              padding-bottom: 10px;
-              padding-left: 150px;
-              color: white;
-              font-size: 35px;
-            "
-            >Inventory</a
-          >
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" style="line-height: 60px; padding-top: 20px; padding-bottom: 10px; padding-left: 150px; color: white; font-size: 35px;">Inventory</a>
         </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a
-              href="#"
-              style="line-height: 60px; padding-top: 20px; padding-bottom: 20px"
-              >Home</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              style="line-height: 60px; padding-top: 20px; padding-bottom: 20px"
-              >Order</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              style="line-height: 60px; padding-top: 20px; padding-bottom: 20px"
-              >Item</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              style="line-height: 60px; padding-top: 20px; padding-bottom: 20px"
-              >Category</a
-            >
-          </li>
-          <li
-            class="dropdown"
-            style="line-height: 60px; padding-top: 25px; padding-bottom: 20px"
-          >
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
-              >Partners <span class="caret"></span
-            ></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Customer</a></li>
-              <li><a href="#">Supplier</a></li>
+
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" style="padding: 10px; margin:30px;">Home</a></li>
+                <li><a href="#" style="padding: 10px; margin:30px;">Order</a></li>
+                <li><a href="#" style="padding: 10px; margin:30px;">Item</a></li>
+                <li><a href="../Pages/category.php" style="padding: 10px; margin:30px;">Category</a></li>
+                <li><a href="#" class="btn btn-primary btn-logout" style="background-color: #F2613F; border: none; color: white; padding: 10px; margin:30px;">LogOut</a></li>
             </ul>
-          </li>
-          <img
-            src="https://th.bing.com/th/id/R.b6f68cc0add0b85c614d88383d234d54?rik=FqGw3PQI9rx4zQ&pid=ImgRaw&r=0"
-            alt="Profile"
-            class="mr-3 mt-3 rounded-circle"
-            id="imageButton"
-            style="
-              width: 80px;
-              padding-right: 20px;
-              padding-top: 15px;
-              cursor: pointer;
-            "
-          />
-          <a href="home.html"
-            ><button
-              id="logoutButton"
-              style="
-                display: none;
-                background-color: white;
-                color: black;
-                margin-top: 10px;
-              "
-              class="btn btn-primary"
-            >
-              Logout
-            </button></a
-          >
-        </ul>
-      </div>
-    </nav>
+        </div>
+    </div>
+</nav>

@@ -1,3 +1,8 @@
+<?php
+  //Start the session
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,15 +23,33 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <!-- CSS imports -->
-    <!-- Import styles for navbar -->
     <link rel="stylesheet" href="./Assets/CSS/index.css"/>
     <link rel="stylesheet" href="./Assets/CSS/navbar.css"/>
     <link rel="stylesheet" href="./Assets/CSS/signInCard.css"/>
+    <link rel="stylesheet" href="./Assets/CSS/alert.css"/>
 
     <!--JS imporsts-->
 
   </head>
   <body>
+
+    <?php
+      if (isset($_SESSION['show_login_alert']) && $_SESSION['show_login_alert'] === true) {
+
+          if (isset($_GET['status']) and $_GET['status'] == 'success') {
+
+              $alertClass = 'alert alert-success'; // CSS class for the alert (success, danger, etc.)
+              $iconClass = 'fa fa-check'; // CSS class for the icon (font-awesome classes)
+              $alertTitle = 'Login Success!'; // Title for the alert
+              $alertMessage = 'You have successfully logged in!'; // Message for the alert
+
+              include './Assets/Components/alert.php'; // Include the alert component
+
+              // Unset the session variable
+              unset($_SESSION['show_login_alert']);
+          }
+      }
+    ?>
 
     <!--Componet imports-->
     <!--Include navbar component-->
