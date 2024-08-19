@@ -41,8 +41,23 @@
 
     <div class="afterNavContent" style="padding-top: 80px; margin-top: 50px;">
 
-      <!-- Manage inventory button -->
-      <button type="button" class="btn btn-primary"  style="padding: 1rem 2rem; border: none; color: white; border-radius: 1rem; margin-left: 30px;" data-toggle="modal" data-target="#manageInventoryModal">Manage Inventory</button><br><br><br>
+      <div class="row" style="margin-left: 0; margin-right: 0;">
+        <!-- Manage Inventory button aligned to the left -->
+        <div class="col-xs-6 text-left">
+          <button type="button" class="btn btn-primary" style="padding: 1rem 2rem; border: none; color: white; border-radius: 1rem;" data-toggle="modal" data-target="#manageInventoryModal">
+            Manage Inventory
+          </button>
+        </div>
+        
+        <!-- Add Category button aligned to the right -->
+        <div class="col-xs-6 text-right">
+          <button type="button" class="btn btn-primary" style="padding: 1rem 2rem; border: none; color: white; border-radius: 1rem;" onclick="window.location.href='../PHP/categoryAdd.php';">
+            Add Category
+          </button>
+        </div>
+      </div>
+
+      <br><br>
 
       <!-- Include searchbar for category name search -->
       <?php
