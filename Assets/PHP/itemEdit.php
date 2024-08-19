@@ -77,7 +77,11 @@
     </style>
 </head>
 <body>
-    <?php include_once "../Components/admin-navbar.php"; ?>
+
+    <?php
+        // include_once "../Components/admin-navbar.php"
+        include_once "../Components/sideNavBar.php"
+    ?>
 
     <div class="container" style="padding-top: 80px;">
         <h2>Edit Item</h2>

@@ -50,7 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </style>
 </head>
 <body>
-    <?php include_once "../Components/admin-navbar.php"; ?>
+
+    <?php
+        // include_once "../Components/admin-navbar.php"
+        include_once "../Components/sideNavBar.php"
+    ?>
 
     <div class="afterNavContent" style="padding-top: 80px; margin-top: 50px; margin-left: 50px; margin-right: 50px;">
         <h2>Add Item</h2>
