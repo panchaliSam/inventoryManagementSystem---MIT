@@ -7,14 +7,15 @@
 
     // Modify the SQL query to include a search condition for the Brand
     $sql = "
-        SELECT Item.ItemID, Item.Name, Item.Brand, Item.Price, Item.Quantity, 
-               Item.IsAvailable, Item.Description, Category.Name AS CategoryName
+        SELECT Item.ItemID, Item.Name, Brand.Name AS BrandName, Item.SellingPrice, 
+               Item.PurchasePrice, Item.Quantity, Item.Status, Item.Description, Category.Name AS CategoryName
         FROM Item
         LEFT JOIN Category ON Item.CategoryID = Category.CategoryID
+        LEFT JOIN Brand ON Item.BrandID = Brand.BrandID
     ";
 
     if ($searchTerm != '') {
-        $sql .= " WHERE Item.Brand LIKE ?";
+        $sql .= " WHERE Brand.Name LIKE ?";
     }
 
     // Prepare and execute the query
@@ -27,12 +28,14 @@
 
     $stmt->execute();
     $result = $stmt->get_result();
-
 ?>
 
-<head>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <!-- Linking Bootstrap styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Items List</title>
 </head>
 <body>
     <div class="container">
@@ -43,7 +46,8 @@
                     <th>Item ID</th>
                     <th>Name</th>
                     <th>Brand</th>
-                    <th>Price</th>
+                    <th>Selling Price</th>
+                    <th>Purchase Price</th>
                     <th>Quantity</th>
                     <th>Available</th>
                     <th>Description</th>
@@ -57,26 +61,30 @@
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td>" . $row['ItemID'] . "</td>";
-                        echo "<td>" . $row['Name'] . "</td>";
-                        echo "<td>" . $row['Brand'] . "</td>";
-                        echo "<td>" . $row['Price'] . "</td>";
-                        echo "<td>" . $row['Quantity'] . "</td>";
-                        echo "<td>" . ($row['IsAvailable'] ? 'Yes' : 'No') . "</td>";
-                        echo "<td>" . $row['Description'] . "</td>";
-                        echo "<td>" . $row['CategoryName'] . "</td>";
+                        echo "<td>" . htmlspecialchars($row['ItemID']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['Name']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['BrandName']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['SellingPrice']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['PurchasePrice']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['Quantity']) . "</td>";
+                        echo "<td>" . ($row['Status'] ? 'Yes' : 'No') . "</td>";
+                        echo "<td>" . htmlspecialchars($row['Description']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['CategoryName']) . "</td>";
                         echo "<td>
-                                <a href='../PHP/itemEdit.php?id=" . $row['ItemID'] . "' class='btn btn-primary btn-sm'>
+                                <a href='../PHP/itemEdit.php?id=" . htmlspecialchars($row['ItemID']) . "' class='btn btn-primary btn-sm'>
                                     <span class='glyphicon glyphicon-edit'></span>
                                 </a>
-                                <a href='../PHP/itemDelete.php?id=" . $row['ItemID'] . "' class='btn btn-danger btn-sm'>
+                                <a href='../PHP/itemDelete.php?id=" . htmlspecialchars($row['ItemID']) . "' class='btn btn-danger btn-sm'>
                                     <span class='glyphicon glyphicon-trash'></span>
+                                </a>
+                                <a href='../PHP/itemAddQuantity.php?id=" . htmlspecialchars($row['ItemID']) . "' class='btn btn-success btn-sm'>
+                                    <span class='glyphicon glyphicon-plus'></span> Add
                                 </a>
                               </td>";
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='9'>No items found</td></tr>";
+                    echo "<tr><td colspan='10'>No items found</td></tr>";
                 }
                 ?>
             </tbody>

@@ -42,9 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </style>
 </head>
 <body>
-    <?php include_once "../Components/admin-navbar.php"; ?>
+    <?php
+        // include_once "../Components/admin-navbar.php"
+        include_once "../Components/sideNavBar.php"
+    ?>
 
-    <div class="afterNavContent" style="padding-top: 80px; margin-top: 50px; margin-left: 50px; margin-right: 50px;">
+    <div class="afterNavContent" style="padding-top: 10px; margin-top: 10px; padding-left: 70px; margin-left: 50px; padding-right: 70px; margin-right: 50px;">
         <h2>Add Category</h2>
 
         <!-- Form to add category -->

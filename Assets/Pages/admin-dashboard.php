@@ -30,7 +30,8 @@
     <!--Componet imports-->
     <!--Include navbar component-->
     <?php
-        include_once "../Components/admin-navbar.php"
+        // include_once "../Components/admin-navbar.php"
+        include_once "../Components/sideNavBar.php"
     ?>
   </body>
 </html>

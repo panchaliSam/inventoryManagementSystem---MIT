@@ -6,8 +6,8 @@ require('../Config/config.php');
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $ItemID = intval($_GET['id']);
 
-    // Fetch the current quantity, availability, and CategoryID of the item
-    $sql = "SELECT Quantity, IsAvailable, CategoryID FROM Item WHERE ItemID = ?";
+    // Fetch the current quantity and CategoryID of the item
+    $sql = "SELECT Quantity, CategoryID FROM Item WHERE ItemID = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $ItemID);
     $stmt->execute();
@@ -16,18 +16,16 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     if ($result->num_rows > 0) {
         $item = $result->fetch_assoc();
         $currentQuantity = $item['Quantity'];
-        $isAvailable = $item['IsAvailable'];
         $CategoryID = $item['CategoryID'];
 
         if ($currentQuantity > 0) {
             // Decrease the item quantity by 1
             $newQuantity = $currentQuantity - 1;
-            $newAvailability = $newQuantity > 0 ? $isAvailable : 'No';
 
-            // Update the item quantity and availability
-            $sql = "UPDATE Item SET Quantity = ?, IsAvailable = ? WHERE ItemID = ?";
+            // Update the item quantity
+            $sql = "UPDATE Item SET Quantity = ? WHERE ItemID = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("isi", $newQuantity, $newAvailability, $ItemID);
+            $stmt->bind_param("ii", $newQuantity, $ItemID);
             $stmt->execute();
 
             // Update the category quantity
@@ -45,7 +43,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             $stmt->bind_param("i", $ItemID);
             $stmt->execute();
 
-            // Update the category quantity
+            // Update the category quantity (Assuming we want to subtract 1 from category quantity here as well)
             $sql = "UPDATE Category SET Quantity = Quantity - 1 WHERE CategoryID = ?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("i", $CategoryID);
@@ -62,4 +60,3 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 } else {
     echo "<script>alert('No item ID specified.'); window.location.href='../Pages/item.php';</script>";
 }
-?>

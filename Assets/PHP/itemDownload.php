@@ -2,12 +2,13 @@
     // Include the config file for database connection
     require('../Config/config.php');
 
-    // Fetch items with category names from the database
+    // Fetch items with category names and brand names from the database
     $sql = "
-        SELECT Item.ItemID, Item.Name, Item.Brand, Item.Price, Item.Quantity, 
-            Item.IsAvailable, Item.Description, Category.Name AS CategoryName
+        SELECT Item.ItemID, Item.Name, Brand.Name AS BrandName, Item.PurchasePrice AS Price, Item.Quantity, 
+            Item.Status AS IsAvailable, Item.Description, Category.Name AS CategoryName
         FROM Item
         LEFT JOIN Category ON Item.CategoryID = Category.CategoryID
+        LEFT JOIN Brand ON Item.BrandID = Brand.BrandID
     ";
 
     $result = $conn->query($sql);
