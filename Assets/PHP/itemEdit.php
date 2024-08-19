@@ -81,9 +81,9 @@
     <?php
         // include_once "../Components/admin-navbar.php"
         include_once "../Components/sideNavBar.php"
-    ?>
+    ?>    
 
-    <div class="container" style="padding-top: 80px;">
+    <div class="afterNavContent" style="padding-top: 10px; margin-top: 10px; padding-left: 80px; margin-left: 50px; margin-right: 50px;">
         <h2>Edit Item</h2>
 
         <!-- Form to edit item -->

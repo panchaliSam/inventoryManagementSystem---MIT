@@ -67,7 +67,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         include_once "../Components/sideNavBar.php"
     ?>
 
-    <div class="afterNavContent" style="padding-top: 80px; margin-top: 50px; margin-left: 50px; margin-right: 50px;">
+    <div class="afterNavContent" style="padding-top: 10px; margin-top: 10px; padding-left: 80px; margin-left: 50px; margin-right: 50px;">
         <h2>Edit Category</h2>
 
         <!-- Form to edit category -->
