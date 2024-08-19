@@ -57,7 +57,7 @@
         </div>
       </div>
 
-      <br><br>
+    <br><br>
 
       <!-- Include searchbar for category name search -->
       <?php
