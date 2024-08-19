@@ -77,6 +77,9 @@
                                 <a href='../PHP/itemDelete.php?id=" . htmlspecialchars($row['ItemID']) . "' class='btn btn-danger btn-sm'>
                                     <span class='glyphicon glyphicon-trash'></span>
                                 </a>
+                                <a href='../PHP/itemAddQuantity.php?id=" . htmlspecialchars($row['ItemID']) . "' class='btn btn-success btn-sm'>
+                                    <span class='glyphicon glyphicon-plus'></span> Add
+                                </a>
                               </td>";
                         echo "</tr>";
                     }
