@@ -4,83 +4,92 @@ USE InventoryMgt;
 
 -- TABLES --
 
-CREATE TABLE Category(
-    CategoryID INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(30) NOT NULL,
-    Quantity INT NOT NULL,
-    IsAvailable BOOL NOT NULL,
-    Description VARCHAR(100)
+CREATE TABLE category (
+	CategoryID INT NOT NULL,
+	name VARCHAR(45) NULL DEFAULT NULL,
+	quantity INT NOT NULL,
+	IsAvailable TINYINT NULL,
+	Description VARCHAR(100) NULL,
+	PRIMARY KEY (CategoryID)
 );
 
-CREATE TABLE User(
-    UserID INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(30) NOT NULL,
-    Email VARCHAR(30) NOT NULL UNIQUE,
-    Telephone VARCHAR(15) NOT NULL,
-    Username VARCHAR(30) NOT NULL UNIQUE,
-    PasswordHash CHAR(64) NOT NULL,
-    IsAdmin BOOL NOT NULL
+CREATE TABLE user (
+	UserID INT NOT NULL,
+	fName VARCHAR(45) NULL DEFAULT NULL,
+	lname VARCHAR(45) NULL DEFAULT NULL,
+	email VARCHAR(45) NULL DEFAULT NULL,
+	telephone VARCHAR(10) NULL DEFAULT NULL,
+	uname VARCHAR(20) NULL DEFAULT NULL,
+	password VARCHAR(45) NULL DEFAULT NULL,
+	isAdmin TINYINT NULL DEFAULT NULL,
+	PRIMARY KEY (UserID)
 );
 
-CREATE TABLE Orders(
-    OrderID INT AUTO_INCREMENT PRIMARY KEY,
-    ClientName VARCHAR(30) NOT NULL,
-    Date DATE NOT NULL,
-    Quantity INT NOT NULL,
-    Amount FLOAT NOT NULL
+CREATE TABLE orders (
+	OrderID INT NOT NULL,
+	dateAdded DATETIME NULL DEFAULT NULL,
+	Amount DOUBLE NULL DEFAULT NULL,
+	CustomerID INT NOT NULL,
+	PRIMARY KEY (OrderID),
+    FOREIGN KEY (CustomerID) REFERENCES customer(CustomerID)
 );
 
-CREATE TABLE Item(
-    ItemID INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(30) NOT NULL,
-    Brand VARCHAR(30) NOT NULL,
-    Price FLOAT NOT NULL,
-    Quantity INT NOT NULL,
-    IsAvailable BOOL NOT NULL,
-    Description VARCHAR(100),
-    CategoryID INT,
-    FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID)
+CREATE TABLE item (
+	ItemID INT NOT NULL,
+	name VARCHAR(45) NULL DEFAULT NULL,
+	quantity INT NULL DEFAULT NULL,
+	purchasePrice DOUBLE NULL DEFAULT NULL,
+	sellingPrice DOUBLE NULL DEFAULT NULL,
+	status TINYINT NULL DEFAULT NULL,
+	description TEXT NULL DEFAULT NULL,
+	CategoryID INT NOT NULL,
+	BrandID INT NOT NULL,
+	PRIMARY KEY (ItemID),
+    FOREIGN KEY (CategoryID) REFERENCES category(CategoryID),
+    FOREIGN KEY (BrandID) REFERENCES brand (BrandID)
 );
 
-CREATE TABLE OrderItem (
-    OrderID INT,
-    ItemID INT,
-    Quantity INT NOT NULL,
-    PRIMARY KEY (OrderID, ItemID),
-    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
-    FOREIGN KEY (ItemID) REFERENCES Item(ItemID)
+CREATE TABLE item_has_order (
+	ItemID INT NOT NULL,
+	OrderID INT NOT NULL,
+	quantity INT NULL DEFAULT NULL,
+	FOREIGN KEY (ItemID) REFERENCES item(ItemID),
+    FOREIGN KEY (OrderID) REFERENCES orders(OrderID)
 );
 
-CREATE TABLE UserCategory (
-    UserID INT,
-    CategoryID INT,
-    PRIMARY KEY (UserID, CategoryID),
-    FOREIGN KEY (UserID) REFERENCES User(UserID),
-    FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID)
+CREATE TABLE customer (
+	CustomerID INT NOT NULL,
+	name VARCHAR(45) NULL DEFAULT NULL,
+	email VARCHAR(45) NULL DEFAULT NULL,
+	telephone VARCHAR(10) NULL DEFAULT NULL,
+	PRIMARY KEY (CustomerID)
 );
 
-CREATE TABLE UserItem (
-    UserID INT,
-    ItemID INT,
-    PRIMARY KEY (UserID, ItemID),
-    FOREIGN KEY (UserID) REFERENCES User(UserID),
-    FOREIGN KEY (ItemID) REFERENCES Item(ItemID)
+CREATE TABLE category_has_supplier (
+	CategoryID INT NOT NULL,
+	SupplierID INT NOT NULL,
+	quantity INT NULL DEFAULT NULL,
+    FOREIGN KEY (CategoryID) REFERENCES category (CategoryID),
+    FOREIGN KEY (SupplierID) REFERENCES supplier (SupplierID)
 );
 
-CREATE TABLE UserOrders (
-    UserID INT,
-    OrderID INT,
-    PRIMARY KEY (UserID, OrderID),
-    FOREIGN KEY (UserID) REFERENCES User(UserID),
-    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
+CREATE TABLE supplier (
+	SupplierID INT NOT NULL,
+	name VARCHAR(45) NULL DEFAULT NULL,
+	telephone VARCHAR(10) NULL DEFAULT NULL,
+	PRIMARY KEY (SupplierID)
 );
 
-
+CREATE TABLE brand (
+	BrandID INT NOT NULL,
+	name VARCHAR(45) NULL DEFAULT NULL,
+	PRIMARY KEY (BrandID)
+);
 
 USE InventoryMgt;
 
 -- Inserting Categories --
-INSERT INTO Category (Name, Quantity, IsAvailable, Description)
+INSERT INTO category (Name, Quantity, IsAvailable, Description)
 VALUES 
 ('Phone', 100, TRUE, 'Smartphones and accessories'),
 ('Laptop', 50, TRUE, 'Laptops and accessories'),
@@ -88,13 +97,13 @@ VALUES
 
 -- Inserting Users --
 -- Note: Passwords should be hashed using a secure method before insertion
-INSERT INTO User (Name, Email, Telephone, Username, PasswordHash, IsAdmin)
+INSERT INTO user (Name, Email, Telephone, Username, PasswordHash, IsAdmin)
 VALUES 
 ('Alice Johnson', 'alice@example.com', '1234567890', 'alicej', SHA2('password123', 256), TRUE),
 ('Bob Smith', 'bob@example.com', '0987654321', 'bobsmith', SHA2('password456', 256), FALSE);
 
 -- Inserting Items --
-INSERT INTO Item (Name, Brand, Price, Quantity, IsAvailable, Description, CategoryID)
+INSERT INTO item (Name, Brand, Price, Quantity, IsAvailable, Description, CategoryID)
 VALUES 
 ('iPhone 14', 'Apple', 999.99, 30, TRUE, 'Latest model smartphone', 1),
 ('Galaxy S21', 'Samsung', 799.99, 50, TRUE, 'High-end Android smartphone', 1),
@@ -104,7 +113,7 @@ VALUES
 ('Sony WH-1000XM4', 'Sony', 299.99, 50, TRUE, 'Noise-canceling headphones', 3);
 
 -- Inserting Orders --
-INSERT INTO Orders (ClientName, Date, Quantity, Amount)
+INSERT INTO orders (ClientName, Date, Quantity, Amount)
 VALUES 
 ('Charlie Brown', '2024-08-01', 2, 1999.98),
 ('David Wilson', '2024-08-02', 1, 999.99);
