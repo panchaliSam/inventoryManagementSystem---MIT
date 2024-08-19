@@ -48,7 +48,7 @@
           
           <!-- Add Category button aligned to the right -->
           <div class="col-xs-6 text-right">
-            <button type="button" class="btn btn-primary" style="padding: 1rem 2rem; border: none; color: white; border-radius: 1rem;" onclick="window.location.href='';">
+            <button type="button" class="btn btn-primary" style="padding: 1rem 2rem; border: none; color: white; border-radius: 1rem;" onclick="window.location.href='../PHP/itemAdd.php';">
               Add Item
             </button>
           </div>
