@@ -27,7 +27,7 @@
 
     <!--CSS imporsts-->
     <link rel="stylesheet" href="../CSS/category.css"/>
-    <link rel="stylesheet" href="../CSS/navbar.css"/>
+    <!-- <link rel="stylesheet" href="../CSS/navbar.css"/> -->
     <link rel="stylesheet" href="../CSS/index.css"/>
 
   </head>
@@ -36,16 +36,17 @@
     <!--Componet imports-->
     <!--Include navbar component-->
     <?php
-        include_once "../Components/admin-navbar.php"
+        // include_once "../Components/admin-navbar.php"
+        include_once "../Components/sideNavBar.php"
     ?>
 
-    <div class="afterNavContent" style="padding-top: 80px; margin-top: 50px;">
+    <div class="afterNavContent" style="padding-top: 50px; margin-top: 20px; padding-left: 50px; margin-left: 20px;">
 
       <div class="row" style="margin-left: 0; margin-right: 0;">
         <!-- Manage Inventory button aligned to the left -->
         <div class="col-xs-6 text-left">
           <button type="button" class="btn btn-primary" style="padding: 1rem 2rem; border: none; color: white; border-radius: 1rem;" data-toggle="modal" data-target="#manageInventoryModal">
-            Manage Inventory
+            Manage Categories
           </button>
         </div>
         

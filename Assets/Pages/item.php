@@ -36,10 +36,11 @@
     <!--Componet imports-->
     <!--Include navbar component-->
     <?php
-        include_once "../Components/admin-navbar.php"
+        // include_once "../Components/admin-navbar.php"
+        include_once "../Components/sideNavBar.php"
     ?>
 
-    <div class="afterNavContent" style="padding-top: 80px; margin-top: 50px;">
+    <div class="afterNavContent" style="padding-top: 50px; margin-top: 20px; padding-left: 50px; margin-left: 20px;">
       <div class="row" style="margin-left: 0; margin-right: 0;">
           <!-- Manage Inventory button aligned to the left -->
           <div class="col-xs-6 text-left">
