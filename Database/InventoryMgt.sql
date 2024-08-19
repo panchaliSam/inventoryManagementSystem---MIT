@@ -86,64 +86,66 @@ CREATE TABLE brand (
 	PRIMARY KEY (BrandID)
 );
 
-USE InventoryMgt;
-
 -- Inserting Categories --
-INSERT INTO category (Name, Quantity, IsAvailable, Description)
+INSERT INTO category (CategoryID, Name, Quantity, IsAvailable, Description)
 VALUES 
-('Phone', 100, TRUE, 'Smartphones and accessories'),
-('Laptop', 50, TRUE, 'Laptops and accessories'),
-('Headphone', 200, TRUE, 'Headphones and earphones');
+(1, 'Phone', 100, TRUE, 'Smartphones and accessories'),
+(2, 'Laptop', 50, TRUE, 'Laptops and accessories'),
+(3, 'Headphone', 200, TRUE, 'Headphones and earphones');
 
 -- Inserting Users --
--- Note: Passwords should be hashed using a secure method before insertion
-INSERT INTO user (Name, Email, Telephone, Username, PasswordHash, IsAdmin)
+INSERT INTO user (UserID, fName, lname, email, telephone, uname, password, isAdmin)
 VALUES 
-('Alice Johnson', 'alice@example.com', '1234567890', 'alicej', SHA2('password123', 256), TRUE),
-('Bob Smith', 'bob@example.com', '0987654321', 'bobsmith', SHA2('password456', 256), FALSE);
-
--- Inserting Items --
-INSERT INTO item (Name, Brand, Price, Quantity, IsAvailable, Description, CategoryID)
-VALUES 
-('iPhone 14', 'Apple', 999.99, 30, TRUE, 'Latest model smartphone', 1),
-('Galaxy S21', 'Samsung', 799.99, 50, TRUE, 'High-end Android smartphone', 1),
-('MacBook Pro', 'Apple', 1299.99, 20, TRUE, 'High-performance laptop', 2),
-('Dell XPS 13', 'Dell', 999.99, 30, TRUE, 'Compact and powerful laptop', 2),
-('AirPods Pro', 'Apple', 199.99, 100, TRUE, 'Wireless noise-canceling earbuds', 3),
-('Sony WH-1000XM4', 'Sony', 299.99, 50, TRUE, 'Noise-canceling headphones', 3);
+(1, 'John', 'Doe', 'john.doe@example.com', '1234567890', 'johndoe', 'password123', TRUE),
+(2, 'Jane', 'Smith', 'jane.smith@example.com', '0987654321', 'janesmith', 'password123', FALSE);
 
 -- Inserting Orders --
-INSERT INTO orders (ClientName, Date, Quantity, Amount)
+INSERT INTO orders (OrderID, dateAdded, Amount, CustomerID)
 VALUES 
-('Charlie Brown', '2024-08-01', 2, 1999.98),
-('David Wilson', '2024-08-02', 1, 999.99);
+(1, '2024-08-19 10:00:00', 1500.00, 1),
+(2, '2024-08-19 11:00:00', 800.00, 2);
 
--- Inserting Order Items --
-INSERT INTO OrderItem (OrderID, ItemID, Quantity)
+-- Inserting Items --
+INSERT INTO item (ItemID, name, quantity, purchasePrice, sellingPrice, status, description, CategoryID, BrandID)
 VALUES 
-(1, 3, 1), -- 1 MacBook Pro
-(1, 1, 1), -- 1 iPhone 14
-(2, 4, 1); -- 1 Dell XPS 13
+(1, 'iPhone 12', 10, 700.00, 900.00, TRUE, 'Latest iPhone model', 1, 1),
+(2, 'Dell XPS 13', 5, 1000.00, 1200.00, TRUE, '13-inch laptop', 2, 2),
+(3, 'Sony WH-1000XM4', 15, 200.00, 300.00, TRUE, 'Noise-cancelling headphones', 3, 3);
 
--- Inserting UserCategory Relations --
-INSERT INTO UserCategory (UserID, CategoryID)
+-- Inserting Item-Order Relationships --
+INSERT INTO item_has_order (ItemID, OrderID, quantity)
 VALUES 
-(1, 1), -- Alice Johnson with Phones
-(1, 2), -- Alice Johnson with Laptops
-(2, 3); -- Bob Smith with Headphones
+(1, 1, 2),
+(2, 2, 1),
+(3, 1, 3);
 
--- Inserting UserItem Relations --
-INSERT INTO UserItem (UserID, ItemID)
+-- Inserting Customers --
+INSERT INTO customer (CustomerID, name, email, telephone)
 VALUES 
-(1, 1), -- Alice Johnson with iPhone 14
-(1, 3), -- Alice Johnson with MacBook Pro
-(2, 6); -- Bob Smith with Sony WH-1000XM4
+(1, 'Alice Brown', 'alice.brown@example.com', '1231231234'),
+(2, 'Bob White', 'bob.white@example.com', '4321432143');
 
--- Inserting UserOrders Relations --
-INSERT INTO UserOrders (UserID, OrderID)
+-- Inserting Category-Supplier Relationships --
+INSERT INTO category_has_supplier (CategoryID, SupplierID, quantity)
 VALUES 
-(1, 1), -- Alice Johnson with Order 1
-(2, 2); -- Bob Smith with Order 2
+(1, 1, 50),
+(2, 2, 30),
+(3, 3, 70);
+
+-- Inserting Suppliers --
+INSERT INTO supplier (SupplierID, name, telephone)
+VALUES 
+(1, 'TechSupplier Co.', '5551234567'),
+(2, 'Gadgets Inc.', '5559876543'),
+(3, 'Electronics World', '5557654321');
+
+-- Inserting Brands --
+INSERT INTO brand (BrandID, name)
+VALUES 
+(1, 'Apple'),
+(2, 'Dell'),
+(3, 'Sony');
+
 
 
 ALTER TABLE User MODIFY PasswordHash VARCHAR(255) NOT NULL;
