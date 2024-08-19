@@ -66,7 +66,7 @@
                         echo "<td>" . $row['Description'] . "</td>";
                         echo "<td>" . $row['CategoryName'] . "</td>";
                         echo "<td>
-                                <a href='../PHP?id=" . $row['ItemID'] . "' class='btn btn-primary btn-sm'>
+                                <a href='../PHP/itemEdit.php?id=" . $row['ItemID'] . "' class='btn btn-primary btn-sm'>
                                     <span class='glyphicon glyphicon-edit'></span>
                                 </a>
                                 <a href='../PHP/itemDelete.php?id=" . $row['ItemID'] . "' class='btn btn-danger btn-sm'>
