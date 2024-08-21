@@ -25,6 +25,9 @@
     <!-- Including Bootstrap's JavaScript for interactive components like modals, dropdowns, etc. -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+    <!-- Including Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
     <!--CSS imporsts-->
     <link rel="stylesheet" href="../CSS/category.css"/>
     <link rel="stylesheet" href="../CSS/navbar.css"/>
@@ -42,7 +45,22 @@
     <div class="afterNavContent" style="padding-top: 80px; margin-top: 50px;">
 
       <!-- Manage inventory button -->
-      <button type="button" class="btn btn-primary"  style="padding: 1rem 2rem; border: none; color: white; border-radius: 1rem; margin-left: 30px;" data-toggle="modal" data-target="#manageInventoryModal">Manage Inventory</button><br><br><br>
+      <!-- <button type="button" class="btn btn-primary"  style="padding: 1rem 2rem; border: none; color: white; border-radius: 1rem; margin-left: 30px;" data-toggle="modal" data-target="#manageInventoryModal">Manage Inventory</button><br><br><br> -->
+
+     <!-- Manage Inventory Button (Left Side) -->
+    <div class="col-6 col-md-6">
+        <button type="button" class="btn btn-primary" style="padding: 1rem 2rem; border: none; color: white; border-radius: 1rem;" data-toggle="modal" data-target="#manageInventoryModal">
+            Manage Inventory
+        </button>
+    </div>
+
+    <!-- Add Category Button (Right Side) -->
+    <div class="col-6 col-md-6 text-right">
+      <button type="button" class="btn btn-primary" style="padding: 1rem 2rem; border: none; color: white; border-radius: 1rem;" onclick="location.href='../PHP/categoryAdd.php'">
+        <i class="bi bi-plus"></i> Add Category
+      </button>
+    </div>
+
 
       <!-- Include searchbar for category name search -->
       <?php
