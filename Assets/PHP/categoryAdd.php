@@ -6,6 +6,7 @@ require('../Config/config.php');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $category_name = $_POST['category_name'];
     $description = $_POST['description'];
+    $supplier_id = $_POST['supplier_id']; // Get supplier ID from the form
 
     // Set quantity to 0 and IsAvailable to false
     $quantity = 0;
@@ -17,13 +18,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("siss", $category_name, $quantity, $is_available, $description);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Category added successfully.'); window.location.href='../Pages/category.php';</script>";
+        $category_id = $conn->insert_id; // Get the ID of the newly inserted category
+
+        // Link the category to the supplier
+        $sql = "INSERT INTO CategoryHasSupplier (CategoryID, SupplierID) VALUES (?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ii", $category_id, $supplier_id);
+
+        if ($stmt->execute()) {
+            echo "<script>alert('Category added successfully.'); window.location.href='../Pages/category.php';</script>";
+        } else {
+            echo "<script>alert('Error adding category to supplier: " . $conn->error . "');</script>";
+        }
     } else {
         echo "<script>alert('Error adding category: " . $conn->error . "');</script>";
     }
 
     // Close the connection
     $conn->close();
+}
+
+// Fetch supplier names for the dropdown
+$supplier_sql = "SELECT SupplierID, Name FROM Supplier";
+$supplier_result = $conn->query($supplier_sql);
+$suppliers = [];
+while ($row = $supplier_result->fetch_assoc()) {
+    $suppliers[] = $row;
 }
 ?>
 
@@ -59,6 +79,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="form-group">
                 <label for="description">Description:</label>
                 <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="supplier_id">Supplier:</label>
+                <select class="form-control" id="supplier_id" name="supplier_id" required>
+                    <option value="">Select Supplier</option>
+                    <?php foreach ($suppliers as $supplier): ?>
+                        <option value="<?php echo $supplier['SupplierID']; ?>">
+                            <?php echo htmlspecialchars($supplier['Name']); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">Add Category</button>
             <a href="../Pages/category.php" class="btn btn-default btn-cancel">Cancel</a>
