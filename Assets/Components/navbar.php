@@ -2,10 +2,10 @@
 <!-- Developers Samoda -->
 <!--Developer Hiruni-->
 
-<nav class="navbar navbar-inverse navbar-fixed-top" style="height: 100px">
-    <div class="container-fluid" style="height: 100%">
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent navbar-inverse" style="height: 100px">
+    <div class="container" style="height: 100%">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+            <button type="button" class="navbar-toggle shadow-none border-0 collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
