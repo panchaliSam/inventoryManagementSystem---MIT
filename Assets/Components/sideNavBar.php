@@ -60,7 +60,7 @@
         <!-- category -->
         <li class="sidebar-item">
           <a
-            href="#"
+            href="../Pages/category.php"
             class="sidebar-link collapsed has-dropdown"
             data-bs-toggle="collapse"
             data-bs-target="#category"
@@ -86,7 +86,7 @@
         <!-- supplier -->
         <li class="sidebar-item">
           <a
-            href="#"
+            href="../Pages/supplier.php"
             class="sidebar-link collapsed has-dropdown"
             data-bs-toggle="collapse"
             data-bs-target="#supplier"
@@ -112,7 +112,7 @@
         <!-- customer -->
         <li class="sidebar-item">
           <a
-            href="#"
+            href="../Pages/customer.php"
             class="sidebar-link collapsed has-dropdown"
             data-bs-toggle="collapse"
             data-bs-target="#customer"
@@ -138,7 +138,7 @@
         <!-- orders -->
         <li class="sidebar-item">
           <a
-            href="#"
+            href="../Pages/order.php"
             class="sidebar-link collapsed has-dropdown"
             data-bs-toggle="collapse"
             data-bs-target="#orders"
