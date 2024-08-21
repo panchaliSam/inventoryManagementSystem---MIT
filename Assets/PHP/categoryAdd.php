@@ -1,0 +1,98 @@
+<?php
+// Include the config file for database connection
+require('../Config/config.php');
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $category_name = $_POST['category_name'];
+    $description = $_POST['description'];
+    $supplier_id = $_POST['supplier_id']; // Get supplier ID from the form
+
+    // Set quantity to 0 and IsAvailable to false
+    $quantity = 0;
+    $is_available = 0;
+
+    // Insert the new category into the database
+    $sql = "INSERT INTO category (Name, Quantity, IsAvailable, Description) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("siss", $category_name, $quantity, $is_available, $description);
+
+    if ($stmt->execute()) {
+        $category_id = $conn->insert_id; // Get the ID of the newly inserted category
+
+        // Link the category to the supplier
+        $sql = "INSERT INTO CategoryHasSupplier (CategoryID, SupplierID) VALUES (?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ii", $category_id, $supplier_id);
+
+        if ($stmt->execute()) {
+            echo "<script>alert('Category added successfully.'); window.location.href='../Pages/category.php';</script>";
+        } else {
+            echo "<script>alert('Error adding category to supplier: " . $conn->error . "');</script>";
+        }
+    } else {
+        echo "<script>alert('Error adding category: " . $conn->error . "');</script>";
+    }
+
+    // Close the connection
+    $conn->close();
+}
+
+// Fetch supplier names for the dropdown
+$supplier_sql = "SELECT SupplierID, Name FROM Supplier";
+$supplier_result = $conn->query($supplier_sql);
+$suppliers = [];
+while ($row = $supplier_result->fetch_assoc()) {
+    $suppliers[] = $row;
+}
+?>
+
+<head>
+    <title>Add Category</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .btn-cancel {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <?php
+        // include_once "../Components/admin-navbar.php"
+        include_once "../Components/sideNavBar.php"
+    ?>
+
+    <div class="afterNavContent" style="padding-top: 10px; margin-top: 10px; padding-left: 70px; margin-left: 50px; padding-right: 70px; margin-right: 50px;">
+        <h2>Add Category</h2>
+
+        <!-- Form to add category -->
+        <form action="" method="POST">
+            <div class="form-group">
+                <label for="category_name">Category Name:</label>
+                <input type="text" class="form-control" id="category_name" name="category_name" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="supplier_id">Supplier:</label>
+                <select class="form-control" id="supplier_id" name="supplier_id" required>
+                    <option value="">Select Supplier</option>
+                    <?php foreach ($suppliers as $supplier): ?>
+                        <option value="<?php echo $supplier['SupplierID']; ?>">
+                            <?php echo htmlspecialchars($supplier['Name']); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Category</button>
+            <a href="../Pages/category.php" class="btn btn-default btn-cancel">Cancel</a>
+        </form>
+    </div>
+</body>

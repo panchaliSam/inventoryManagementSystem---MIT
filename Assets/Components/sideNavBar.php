@@ -1,5 +1,7 @@
 <head>
-  <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+  <!-- Include FontAwesome stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+  <!-- Include your custom stylesheet -->
   <link rel="stylesheet" href="../CSS/sideNavBar.css" />
 
   <script>
@@ -7,7 +9,6 @@
         document.getElementById('sidebar').classList.toggle('expand');
     });
   </script>
-
 </head>
 
 <body>
@@ -16,7 +17,7 @@
     <aside id="sidebar">
       <div class="d-flex" style="font-size: 20px;">
         <button class="toggle-btn" type="button" style="font-size: 24px;">
-          <i class="lni lni-grid-alt" style="font-size: 24px;"></i>
+          <i class="fas fa-bars fa-2x"></i>
         </button>
         <div class="sidebar-logo" style="font-size: 24px;">
           <a href="#">ByteForce</a>
@@ -27,13 +28,13 @@
       <ul class="sidebar-nav" style="font-size: 18px;">
         <li class="sidebar-item">
           <a href="#" class="sidebar-link" style="font-size: 18px;">
-            <i class="lni lni-user" style="font-size: 20px;"></i>
+            <i class="fas fa-tachometer-alt fa-2x"></i>
             <span>Dashboard</span>
           </a>
         </li>
         <li class="sidebar-item">
           <a
-            href="#"
+            href="../Pages/item.php"
             class="sidebar-link collapsed has-dropdown"
             data-bs-toggle="collapse"
             data-bs-target="#item"
@@ -41,7 +42,7 @@
             aria-controls="item"
             style="font-size: 18px;"
           >
-            <i class="lni lni-protection" style="font-size: 20px;"></i>
+            <i class="fas fa-box fa-2x"></i>
             <span>Items</span>
           </a>
           <ul
@@ -51,10 +52,7 @@
             style="font-size: 18px;"
           >
             <li class="sidebar-item">
-              <a href="#" class="sidebar-link" style="font-size: 18px;">Add Item</a>
-            </li>
-            <li class="sidebar-item">
-              <a href="#" class="sidebar-link" style="font-size: 18px;">View Items</a>
+              <a href="../PHP/itemAdd.php" class="sidebar-link" style="font-size: 18px;">Items</a>
             </li>
           </ul>
         </li>
@@ -70,7 +68,7 @@
             aria-controls="category"
             style="font-size: 18px;"
           >
-            <i class="lni lni-protection" style="font-size: 20px;"></i>
+            <i class="fas fa-tags fa-2x"></i>
             <span>Categories</span>
           </a>
           <ul
@@ -80,10 +78,7 @@
             style="font-size: 18px;"
           >
             <li class="sidebar-item">
-              <a href="#" class="sidebar-link" style="font-size: 18px;">Manage Category</a>
-            </li>
-            <li class="sidebar-item">
-              <a href="#" class="sidebar-link" style="font-size: 18px;">View Category</a>
+              <a href="#" class="sidebar-link" style="font-size: 18px;">Category</a>
             </li>
           </ul>
         </li>
@@ -94,25 +89,22 @@
             href="#"
             class="sidebar-link collapsed has-dropdown"
             data-bs-toggle="collapse"
-            data-bs-target="#suplier"
+            data-bs-target="#supplier"
             aria-expanded="false"
-            aria-controls="suplier"
+            aria-controls="supplier"
             style="font-size: 18px;"
           >
-            <i class="lni lni-protection" style="font-size: 20px;"></i>
+            <i class="fas fa-store fa-2x"></i>
             <span>Suppliers</span>
           </a>
           <ul
-            id="suplier"
+            id="supplier"
             class="sidebar-dropdown list-unstyled collapse"
             data-bs-parent="#sidebar"
             style="font-size: 18px;"
           >
             <li class="sidebar-item">
-              <a href="#" class="sidebar-link" style="font-size: 18px;">Add Supplier</a>
-            </li>
-            <li class="sidebar-item">
-              <a href="#" class="sidebar-link" style="font-size: 18px;">View Supplier</a>
+              <a href="#" class="sidebar-link" style="font-size: 18px;">Suppliers</a>
             </li>
           </ul>
         </li>
@@ -128,7 +120,7 @@
             aria-controls="customer"
             style="font-size: 18px;"
           >
-            <i class="lni lni-protection" style="font-size: 20px;"></i>
+            <i class="fas fa-users fa-2x"></i>
             <span>Customer</span>
           </a>
           <ul
@@ -138,23 +130,47 @@
             style="font-size: 18px;"
           >
             <li class="sidebar-item">
-              <a href="#" class="sidebar-link" style="font-size: 18px;">Add Customer</a>
-            </li>
-            <li class="sidebar-item">
-              <a href="#" class="sidebar-link" style="font-size: 18px;">View Customer</a>
+              <a href="#" class="sidebar-link" style="font-size: 18px;">Customers</a>
             </li>
           </ul>
         </li>
+
+        <!-- orders -->
+        <li class="sidebar-item">
+          <a
+            href="#"
+            class="sidebar-link collapsed has-dropdown"
+            data-bs-toggle="collapse"
+            data-bs-target="#orders"
+            aria-expanded="false"
+            aria-controls="orders"
+            style="font-size: 18px;"
+          >
+            <i class="fas fa-shopping-cart fa-2x"></i>
+            <span>Orders</span>
+          </a>
+          <ul
+            id="orders"
+            class="sidebar-dropdown list-unstyled collapse"
+            data-bs-parent="#sidebar"
+            style="font-size: 18px;"
+          >
+            <li class="sidebar-item">
+              <a href="#" class="sidebar-link" style="font-size: 18px;">Orders</a>
+            </li>
+          </ul>
+        </li>
+
         <li class="sidebar-item">
           <a href="#" class="sidebar-link" style="font-size: 18px;">
-            <i class="lni lni-cog" style="font-size: 20px;"></i>
+            <i class="fas fa-cogs fa-2x"></i>
             <span>Settings</span>
           </a>
         </li>
       </ul>
       <div class="sidebar-footer" style="font-size: 18px;">
         <a href="#" class="sidebar-link" style="font-size: 18px;">
-          <i class="lni lni-exit" style="font-size: 20px;"></i>
+          <i class="fas fa-sign-out-alt fa-2x"></i>
           <span>Logout</span>
         </a>
       </div>
