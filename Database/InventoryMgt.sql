@@ -4,80 +4,87 @@ USE InventoryMgt;
 
 -- TABLES --
 
-CREATE TABLE Category(
-    CategoryID INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(30) NOT NULL,
-    Quantity INT NOT NULL,
-    IsAvailable BOOL NOT NULL,
-    Description VARCHAR(100)
+CREATE TABLE Category (
+	CategoryID INT NOT NULL AUTO_INCREMENT,
+	Name VARCHAR(45) NULL DEFAULT NULL,
+	Quantity INT NOT NULL,
+	IsAvailable TINYINT NULL,
+	Description VARCHAR(100) NULL,
+	PRIMARY KEY (CategoryID)
 );
 
-CREATE TABLE User(
-    UserID INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(30) NOT NULL,
-    Email VARCHAR(30) NOT NULL UNIQUE,
-    Telephone VARCHAR(15) NOT NULL,
-    Username VARCHAR(30) NOT NULL UNIQUE,
-    PasswordHash CHAR(64) NOT NULL,
-    IsAdmin BOOL NOT NULL
+CREATE TABLE User (
+	UserID INT NOT NULL AUTO_INCREMENT,
+	FName VARCHAR(45) NULL DEFAULT NULL,
+	LName VARCHAR(45) NULL DEFAULT NULL,
+	Email VARCHAR(45) NULL DEFAULT NULL,
+	Telephone VARCHAR(10) NULL DEFAULT NULL,
+	UName VARCHAR(20) NULL DEFAULT NULL,
+	PasswordHash VARCHAR(255) NOT NULL,
+	IsAdmin TINYINT NULL DEFAULT NULL,
+	PRIMARY KEY (UserID)
 );
 
-CREATE TABLE Orders(
-    OrderID INT AUTO_INCREMENT PRIMARY KEY,
-    ClientName VARCHAR(30) NOT NULL,
-    Date DATE NOT NULL,
-    Quantity INT NOT NULL,
-    Amount FLOAT NOT NULL
+CREATE TABLE Customer (
+	CustomerID INT NOT NULL AUTO_INCREMENT,
+	Name VARCHAR(45) NULL DEFAULT NULL,
+	Email VARCHAR(45) NULL DEFAULT NULL,
+	Telephone VARCHAR(10) NULL DEFAULT NULL,
+	PRIMARY KEY (CustomerID)
 );
 
-CREATE TABLE Item(
-    ItemID INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(30) NOT NULL,
-    Brand VARCHAR(30) NOT NULL,
-    Price FLOAT NOT NULL,
-    Quantity INT NOT NULL,
-    IsAvailable BOOL NOT NULL,
-    Description VARCHAR(100),
-    CategoryID INT,
-    FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID)
+CREATE TABLE Supplier (
+	SupplierID INT NOT NULL AUTO_INCREMENT,
+	Name VARCHAR(45) NULL DEFAULT NULL,
+	Telephone VARCHAR(10) NULL DEFAULT NULL,
+	PRIMARY KEY (SupplierID)
 );
 
-CREATE TABLE OrderItem (
-    OrderID INT,
-    ItemID INT,
-    Quantity INT NOT NULL,
-    PRIMARY KEY (OrderID, ItemID),
-    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
-    FOREIGN KEY (ItemID) REFERENCES Item(ItemID)
+CREATE TABLE Brand (
+	BrandID INT NOT NULL AUTO_INCREMENT,
+	Name VARCHAR(45) NULL DEFAULT NULL,
+	PRIMARY KEY (BrandID)
 );
 
-CREATE TABLE UserCategory (
-    UserID INT,
-    CategoryID INT,
-    PRIMARY KEY (UserID, CategoryID),
-    FOREIGN KEY (UserID) REFERENCES User(UserID),
-    FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID)
+CREATE TABLE Orders (
+	OrderID INT NOT NULL AUTO_INCREMENT,
+	DateAdded DATETIME NULL DEFAULT NULL,
+	Amount DOUBLE NULL DEFAULT NULL,
+	CustomerID INT NOT NULL,
+	PRIMARY KEY (OrderID),
+    FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
 );
 
-CREATE TABLE UserItem (
-    UserID INT,
-    ItemID INT,
-    PRIMARY KEY (UserID, ItemID),
-    FOREIGN KEY (UserID) REFERENCES User(UserID),
-    FOREIGN KEY (ItemID) REFERENCES Item(ItemID)
+CREATE TABLE Item (
+	ItemID INT NOT NULL AUTO_INCREMENT,
+	Name VARCHAR(45) NULL DEFAULT NULL,
+	Quantity INT NULL DEFAULT NULL,
+	PurchasePrice DOUBLE NULL DEFAULT NULL,
+	SellingPrice DOUBLE NULL DEFAULT NULL,
+	Status TINYINT NULL DEFAULT NULL,
+	Description TEXT NULL DEFAULT NULL,
+	CategoryID INT NOT NULL,
+	BrandID INT NOT NULL,
+	PRIMARY KEY (ItemID),
+    FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID),
+    FOREIGN KEY (BrandID) REFERENCES Brand (BrandID)
 );
 
-CREATE TABLE UserOrders (
-    UserID INT,
-    OrderID INT,
-    PRIMARY KEY (UserID, OrderID),
-    FOREIGN KEY (UserID) REFERENCES User(UserID),
+CREATE TABLE ItemHasOrder (
+	ItemID INT NOT NULL,
+	OrderID INT NOT NULL,
+	Quantity INT NULL DEFAULT NULL,
+	FOREIGN KEY (ItemID) REFERENCES Item(ItemID),
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
 );
 
-
-
-USE InventoryMgt;
+CREATE TABLE CategoryHasSupplier (
+	CategoryID INT NOT NULL,
+	SupplierID INT NOT NULL,
+	Quantity INT NULL DEFAULT NULL,
+    FOREIGN KEY (CategoryID) REFERENCES Category (CategoryID),
+    FOREIGN KEY (SupplierID) REFERENCES Supplier (SupplierID)
+);
 
 -- Inserting Categories --
 INSERT INTO Category (Name, Quantity, IsAvailable, Description)
@@ -86,55 +93,68 @@ VALUES
 ('Laptop', 50, TRUE, 'Laptops and accessories'),
 ('Headphone', 200, TRUE, 'Headphones and earphones');
 
--- Inserting Users --
--- Note: Passwords should be hashed using a secure method before insertion
-INSERT INTO User (Name, Email, Telephone, Username, PasswordHash, IsAdmin)
+-- Inserting Users with Password Hashing --
+INSERT INTO User (FName, LName, Email, Telephone, UName, PasswordHash, IsAdmin)
 VALUES 
-('Alice Johnson', 'alice@example.com', '1234567890', 'alicej', SHA2('password123', 256), TRUE),
-('Bob Smith', 'bob@example.com', '0987654321', 'bobsmith', SHA2('password456', 256), FALSE);
+('John', 'Doe', 'john.doe@example.com', '1234567890', 'johndoe', SHA2('password123', 256), TRUE),
+('Jane', 'Smith', 'jane.smith@example.com', '0987654321', 'janesmith', SHA2('password123', 256), FALSE);
 
--- Inserting Items --
-INSERT INTO Item (Name, Brand, Price, Quantity, IsAvailable, Description, CategoryID)
+-- Inserting Customers --
+INSERT INTO Customer (Name, Email, Telephone)
 VALUES 
-('iPhone 14', 'Apple', 999.99, 30, TRUE, 'Latest model smartphone', 1),
-('Galaxy S21', 'Samsung', 799.99, 50, TRUE, 'High-end Android smartphone', 1),
-('MacBook Pro', 'Apple', 1299.99, 20, TRUE, 'High-performance laptop', 2),
-('Dell XPS 13', 'Dell', 999.99, 30, TRUE, 'Compact and powerful laptop', 2),
-('AirPods Pro', 'Apple', 199.99, 100, TRUE, 'Wireless noise-canceling earbuds', 3),
-('Sony WH-1000XM4', 'Sony', 299.99, 50, TRUE, 'Noise-canceling headphones', 3);
+('Alice Brown', 'alice.brown@example.com', '1231231234'),
+('Bob White', 'bob.white@example.com', '4321432143');
+
+-- Inserting Suppliers --
+INSERT INTO Supplier (Name, Telephone)
+VALUES 
+('TechSupplier Co.', '5551234567'),
+('Gadgets Inc.', '5559876543'),
+('Electronics World', '5557654321');
+
+-- Inserting Brands --
+INSERT INTO Brand (Name)
+VALUES 
+('Apple'),
+('Dell'),
+('Sony');
 
 -- Inserting Orders --
-INSERT INTO Orders (ClientName, Date, Quantity, Amount)
+INSERT INTO Orders (DateAdded, Amount, CustomerID)
 VALUES 
-('Charlie Brown', '2024-08-01', 2, 1999.98),
-('David Wilson', '2024-08-02', 1, 999.99);
+('2024-08-19 10:00:00', 1500.00, 1),
+('2024-08-19 11:00:00', 800.00, 2);
 
--- Inserting Order Items --
-INSERT INTO OrderItem (OrderID, ItemID, Quantity)
+-- Inserting Items --
+INSERT INTO Item (Name, Quantity, PurchasePrice, SellingPrice, Status, Description, CategoryID, BrandID)
 VALUES 
-(1, 3, 1), -- 1 MacBook Pro
-(1, 1, 1), -- 1 iPhone 14
-(2, 4, 1); -- 1 Dell XPS 13
+('iPhone 12', 10, 700.00, 900.00, TRUE, 'Latest iPhone model', 1, 1),
+('Dell XPS 13', 5, 1000.00, 1200.00, TRUE, '13-inch laptop', 2, 2),
+('Sony WH-1000XM4', 15, 200.00, 300.00, TRUE, 'Noise-cancelling headphones', 3, 3);
 
--- Inserting UserCategory Relations --
-INSERT INTO UserCategory (UserID, CategoryID)
+-- Inserting Item-Order Relationships --
+INSERT INTO ItemHasOrder (ItemID, OrderID, Quantity)
 VALUES 
-(1, 1), -- Alice Johnson with Phones
-(1, 2), -- Alice Johnson with Laptops
-(2, 3); -- Bob Smith with Headphones
+(1, 1, 2),
+(2, 2, 1),
+(3, 1, 3);
 
--- Inserting UserItem Relations --
-INSERT INTO UserItem (UserID, ItemID)
+-- Inserting Category-Supplier Relationships --
+INSERT INTO CategoryHasSupplier (CategoryID, SupplierID, Quantity)
 VALUES 
-(1, 1), -- Alice Johnson with iPhone 14
-(1, 3), -- Alice Johnson with MacBook Pro
-(2, 6); -- Bob Smith with Sony WH-1000XM4
-
--- Inserting UserOrders Relations --
-INSERT INTO UserOrders (UserID, OrderID)
-VALUES 
-(1, 1), -- Alice Johnson with Order 1
-(2, 2); -- Bob Smith with Order 2
+(1, 1, 50),
+(2, 2, 30),
+(3, 3, 70);
 
 
-ALTER TABLE User MODIFY PasswordHash VARCHAR(255) NOT NULL;
+ALTER TABLE Item
+MODIFY COLUMN Description VARCHAR(500);
+
+-- Update Item table to ensure all price-related columns are of type DOUBLE
+ALTER TABLE Item
+MODIFY COLUMN PurchasePrice DOUBLE NULL DEFAULT NULL,
+MODIFY COLUMN SellingPrice DOUBLE NULL DEFAULT NULL;
+
+-- Update Orders table to ensure Amount column is of type DOUBLE
+ALTER TABLE Orders
+MODIFY COLUMN Amount DOUBLE NULL DEFAULT NULL;
