@@ -85,12 +85,17 @@
           </ul>
         </li>
 
-        <!-- Settings -->
+        <!-- Brand -->
         <li class="sidebar-item">
-          <a href="#" class="sidebar-link" style="font-size: 18px;">
-            <i class="fas fa-cogs fa-2x"></i>
-            <span>Settings</span>
+          <a href="../Pages/brand.php" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#brands" aria-expanded="false" aria-controls="brands" style="font-size: 18px;">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Brand</span>
           </a>
+          <ul id="brands" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="font-size: 18px;">
+            <li class="sidebar-item">
+              <a href="#" class="sidebar-link" style="font-size: 18px;">Brands</a>
+            </li>
+          </ul>
         </li>
       </ul>
       

@@ -1,8 +1,4 @@
-<!-- Panchali
-Read all categories -->
-
-<!-- Panchali
-Read all categories -->
+<!-- Read all categories -->
 
 <?php
 
@@ -32,9 +28,12 @@ $result = $stmt->get_result();
 // Define image paths based on category name
 $defaultImage = '../Images/alltech.jpg'; 
 $images = array(
-    'Laptop' => '../Images/laptop.jpg',
+    'Laptop' => '../Images/laptopNew.jpg',
     'Phone' => '../Images/phone.jpg',
     'Headphone' => '../Images/headphones.jpg',
+    'Mouse' => '../Images/mouse.jpg',
+    'Keyboard' => '../Images/keyboard.jpg',
+    'Joystick' => '../Images/joyStick.jpg'
 );
 
 // Display the results
