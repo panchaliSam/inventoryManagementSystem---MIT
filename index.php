@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./Assets/CSS/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./Assets/CSS/style.css">
-    <title>ByteForce - Login</title>
+    <title>ByteForce</title>
+    <link rel="icon" href="./Assets/Icons/electroKeep_favicon.png" type="image/x-icon" />
 </head>
 <body>
 
