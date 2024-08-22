@@ -1,13 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <title>ByteForce - Login</title>
+    <link href="./Assets/CSS/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./Assets/CSS/style.css">
+    <title>ByteForce</title>
+    <link rel="icon" href="./Assets/Icons/electroKeep_favicon.png" type="image/x-icon" />
 </head>
 <body>
 
@@ -22,7 +22,7 @@
     <!--------------------------- Left Box ----------------------------->
                 <div class="col-md-6 rounder-4 d-flex justify-content-center align-items-center flex-column left-box" style="background:#332e39;">
                         <div class="featured-image mb-3">
-                            <img src="images/inventory.svg" class="img-fluid" style="width: 250px;">
+                            <img src="./Assets/Images/inventory.svg" class="img-fluid" style="width: 250px;">
                         </div>
                         <p class="text-white fs-2" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">ByteForce Inventory</p>
                         <small class="text-white text-wrap text-center" style="width: 17rem; font-family: 'Courier New', Courier, monospace;"></small>
@@ -129,6 +129,6 @@
     
     </div>
 
-    <script src="script.js" ></script>
+    <script src="./Assets/JS/script.js" ></script>
 </body>
 </html>

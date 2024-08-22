@@ -1,16 +1,15 @@
-function changeSignIn(){
+function changeSignIn() {
 
     var Login = document.getElementById("Login");
     var forgotpass = document.getElementById("forgotpass");
 
     Login.classList.toggle("d-none");
     forgotpass.classList.toggle("d-none");
-     
-    
+
+
 }
 
-function login(){
-
+function login() {
     var email = document.getElementById("email");
     var password = document.getElementById("password");
     var rememberme = document.getElementById("rememberme");
@@ -27,20 +26,21 @@ function login(){
             var t = request.responseText;
             if (t == "success") {
                 alert("Successfully Logged");
+                window.location.href = "./Assets/Pages/category.php";
             } else {
                 document.getElementById("msg").innerHTML = this.response;
                 document.getElementById("msgdiv").className = "d-block";
             }
         }
-    }
+    };
 
     request.open("POST", "loginProcess.php", true);
     request.send(f);
-
 }
 
 
-function forgotPassword(){
+
+function forgotPassword() {
 
     var email = document.getElementById("email2");
 
@@ -85,7 +85,7 @@ function resetPassword() {
 
             if (t == "success") {
                 alert("Your Password Updated");
-              
+
             } else {
                 alert(t);
             }
