@@ -37,6 +37,7 @@ $result = $stmt->get_result();
     <!-- Linking Bootstrap styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <title>Orders List</title>
+    <link rel="icon" href="../Icons/electroKeep_favicon.png" type="image/x-icon" />
 </head>
 <body>
     <div class="container">
