@@ -1,4 +1,3 @@
-<!-- Panchali -->
  <!-- Edit logic for category -->
 
 <?php

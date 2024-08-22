@@ -1,4 +1,3 @@
-<!-- Panchali -->
 <!-- Category section content -->
 
 <?php

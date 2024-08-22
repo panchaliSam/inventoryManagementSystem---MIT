@@ -1,8 +1,4 @@
-<!-- Panchali
-Read all categories -->
-
-<!-- Panchali
-Read all categories -->
+<!-- Read all categories -->
 
 <?php
 
