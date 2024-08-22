@@ -17,7 +17,7 @@
     <aside id="sidebar">
       <div class="d-flex" style="font-size: 20px;">
         <button class="toggle-btn" type="button" style="font-size: 24px;">
-          <i class="fas fa-bars fa-2x"></i>
+          <img src="../Icons/electroKeep_favicon.png" alt="Toggle Icon" style=" margin-left: 0; padding-left: 0; width: 50px; height: auto;">
         </button>
         <div class="sidebar-logo" style="font-size: 24px;">
           <a href="#">ByteForce</a>

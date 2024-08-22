@@ -12,6 +12,7 @@
     <title>Inventory</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="../Icons/electroKeep_favicon.png" type="image/x-icon" />
 
     <!-- Linking the Bootstrap styles -->
     <link
