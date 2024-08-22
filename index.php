@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +21,7 @@
     <!--------------------------- Left Box ----------------------------->
                 <div class="col-md-6 rounder-4 d-flex justify-content-center align-items-center flex-column left-box" style="background:#332e39;">
                         <div class="featured-image mb-3">
-                            <img src="images/inventory.svg" class="img-fluid" style="width: 250px;">
+                            <img src="./Assets/Images/inventory.svg" class="img-fluid" style="width: 250px;">
                         </div>
                         <p class="text-white fs-2" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">ByteForce Inventory</p>
                         <small class="text-white text-wrap text-center" style="width: 17rem; font-family: 'Courier New', Courier, monospace;"></small>
@@ -76,7 +75,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <!-- <button class="btn btn-lg btn-primary w-100 fs-6">Login</button> -->
-                            <a href="#" class="btnlogin w-100 fs-6" onclick="login();">Login</a>
+                            <a href="./Assets/Pages/category.php" class="btnlogin w-100 fs-6" onclick="login();">Login</a>
                         </div>
 
                        

@@ -23,18 +23,24 @@ if(empty($email)){
     if($n == 1){
         $d = $rs->fetch_assoc();
 
+        // Hash the entered password using the same SHA-256 method
+        $hashedEnteredPassword = hash('sha256', $password);
+
         // Verify the hashed password
-        if (password_verify($password, $d['PasswordHash'])) {
+        if ($hashedEnteredPassword === $d['PasswordHash']) {
             echo ("success");
             $_SESSION["u"] = $d;
 
             if($rememberme == "true"){
                 setcookie("email", $email, time()+(60*60*24*365));
-                // It's not recommended to store passwords in cookies even if hashed
             }else{
                 setcookie("email", "", -1);
                 setcookie("password", "", -1);
             }
+
+            // Redirect to the desired page after successful login
+            header("Location: ./Assets/Pages/category.php");
+            exit(); // Always use exit after header to prevent further script execution
         } else {
             echo ("Invalid Username or Password");
         }
