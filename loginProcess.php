@@ -38,8 +38,6 @@ if(empty($email)){
                 setcookie("password", "", -1);
             }
 
-            // Redirect to the desired page after successful login
-            header("Location: ./Assets/Pages/category.php");
             exit(); // Always use exit after header to prevent further script execution
         } else {
             echo ("Invalid Username or Password");

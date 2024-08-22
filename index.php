@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="./Assets/CSS/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./Assets/CSS/style.css">
     <title>ByteForce - Login</title>
 </head>
 <body>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <!-- <button class="btn btn-lg btn-primary w-100 fs-6">Login</button> -->
-                            <a href="./Assets/Pages/category.php" class="btnlogin w-100 fs-6" onclick="login();">Login</a>
+                            <a href="#" class="btnlogin w-100 fs-6" onclick="login();">Login</a>
                         </div>
 
                        
@@ -128,6 +128,6 @@
     
     </div>
 
-    <script src="script.js" ></script>
+    <script src="./Assets/JS/script.js" ></script>
 </body>
 </html>
